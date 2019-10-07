@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Fresh Ego Kid Project</string>
+    <string name="navigation_home_button">Home</string>
+    <string name="navigation_contact_button">Contact</string>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application colors. Update only -->
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!-- Customize your colors here. -->
+    <color name="navigationBarColor">#000000</color>
+    <color name="navigationButtonsColor">#FFFFFF</color>
+</resources>
