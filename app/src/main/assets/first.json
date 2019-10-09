@@ -1,0 +1,19 @@
+{
+  "products": {
+    "fek_460": {
+      "description":"New Era Mesh Trucker In Black",
+      "price":"30.00",
+      "image":"/Users/ArtistSimple/AndroidStudioProjects/FreshEgoKidProject/app/src/main/res/drawable/fek_460.jpg"
+    },
+    "fek_497": {
+      "description":"New Era 9FORTY Polo Cap in grey",
+      "price":"30.00",
+      "image":"/Users/ArtistSimple/AndroidStudioProjects/FreshEgoKidProject/app/src/main/res/drawable/fek_492.jpg"
+    },
+    "fek_500": {
+      "description":"New Era Reflective Cap in Black",
+      "price":"40.00",
+      "image":"/Users/ArtistSimple/AndroidStudioProjects/FreshEgoKidProject/app/src/main/res/drawable/fek_500.jpg"
+    }
+  }
+}

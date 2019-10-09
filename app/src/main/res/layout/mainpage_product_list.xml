@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainpage_product_listitem_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".MainPageProductListActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainpage_product_listitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/mainpage_productprice"
+            style="@style/MainPageProductDescriptionTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="8dp"
+            android:text="£30.00"
+            app:layout_constraintStart_toStartOf="@+id/mainpage_productdescription"
+            app:layout_constraintTop_toBottomOf="@+id/mainpage_productdescription" />
+
+        <TextView
+            android:id="@+id/mainpage_productdescription"
+            style="@style/MainPageProductDescriptionTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="New Era Mesh Trucker In Black"
+            app:layout_constraintBottom_toBottomOf="@+id/mainpage_productimage"
+            app:layout_constraintStart_toEndOf="@+id/mainpage_productimage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/mainpage_productimage"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_gravity="left"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/fek_460" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

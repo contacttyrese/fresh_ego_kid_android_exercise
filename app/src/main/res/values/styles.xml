@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">sans-serif-light, sans-serif-condensed-light, sans-serif-thin</item>
     </style>
 
     <!-- Customize new themes here. -->
@@ -14,8 +15,16 @@
     </style>
 
     <style name="NavigationBarButtonTheme" parent="Widget.AppCompat.Button.Borderless.Colored">
-        <item name="android:fontFamily">Arial, Helvetica, Tahoma</item>
         <item name="android:textColor">@color/navigationButtonsColor</item>
+    </style>
+
+    <style name="MainPageHeadingTheme">
+        <item name="android:textSize">30dp</item>
+    </style>
+
+    <style name="MainPageProductDescriptionTheme">
+        <item name="android:textSize">15dp</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
 </resources>
