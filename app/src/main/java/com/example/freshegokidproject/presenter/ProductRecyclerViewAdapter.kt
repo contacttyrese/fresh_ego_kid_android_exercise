@@ -20,27 +20,30 @@ class ProductRecyclerViewAdapter(private val context: Context, private val produ
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val product = products.get(position)
-        holder.populateProductView(product)
+        val product = products[position]
+        holder.configureProductView()
+        val productPriceWithCurrency = context.resources.getString(R.string.product_price, product.price)
+        holder.populateProductView(product, productPriceWithCurrency)
     }
 
     override fun getItemCount(): Int {
         return products.size
     }
 
-
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        lateinit var mDescriptionTextView: TextView
-        lateinit var mPriceTextView: TextView
-        lateinit var mImageView: ImageView
+        private lateinit var mDescriptionTextView: TextView
+        private lateinit var mPriceTextView: TextView
+        private lateinit var mImageView: ImageView
 
-        fun populateProductView(product: Product) {
+        fun configureProductView() {
             mDescriptionTextView = itemView.findViewById<TextView>(R.id.mainpage_productdescription)
             mPriceTextView = itemView.findViewById<TextView>(R.id.mainpage_productprice)
             mImageView = itemView.findViewById<ImageView>(R.id.mainpage_productimage)
+        }
 
+        fun populateProductView(product: Product, priceWithCurrency: String) {
             mDescriptionTextView.text = product.description
-            mPriceTextView.text = product.price
+            mPriceTextView.text = priceWithCurrency
             val productEnum = ImageResourceEnum.valueOf(product.key.toUpperCase())
             Picasso.get().load(productEnum.getResourceId()).fit().into(mImageView)
         }

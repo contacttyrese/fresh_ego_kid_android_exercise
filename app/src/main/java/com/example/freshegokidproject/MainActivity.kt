@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freshegokidproject.model.ProductDao
@@ -21,12 +22,14 @@ class MainActivity : AppCompatActivity() {
         val productRecyclerView = findViewById<RecyclerView>(R.id.mainpage_product_list)
         val dao = ProductDao("first.json", this)
         val products = dao.mProducts.values.toList()
+        val layoutManager = LinearLayoutManager(this)
 
         productRecyclerView.setHasFixedSize(true)
         productRecyclerView.setItemViewCacheSize(3)
         productRecyclerView.isNestedScrollingEnabled = false
-        productRecyclerView.layoutManager = LinearLayoutManager(this)
+        productRecyclerView.layoutManager = layoutManager
         productRecyclerView.adapter = ProductRecyclerViewAdapter(this, products)
+        productRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
 
         // Used to start new activity
 //        val intent = Intent(this, MainPageProductListActivity::class.java)

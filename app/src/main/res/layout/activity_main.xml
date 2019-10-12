@@ -83,12 +83,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/contact_button"
+        android:id="@+id/search_button"
         style="@style/NavigationBarButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:text="@string/navigation_contact_button"
+        android:text="@string/navigation_search_button"
         app:layout_constraintBottom_toBottomOf="@+id/top_navigation_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/top_navigation_toolbar" />
