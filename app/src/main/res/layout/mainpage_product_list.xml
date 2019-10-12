@@ -5,39 +5,16 @@
     android:id="@+id/mainpage_product_listitem_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".MainPageProductListActivity">
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:id="@+id/mainpage_product_listitem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/mainpage_productprice"
-            style="@style/MainPageProductDescriptionTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="78dp"
-            android:layout_marginTop="8dp"
-            android:text="£30.00"
-            app:layout_constraintStart_toStartOf="@+id/mainpage_productdescription"
-            app:layout_constraintTop_toBottomOf="@+id/mainpage_productdescription" />
-
-        <TextView
-            android:id="@+id/mainpage_productdescription"
-            style="@style/MainPageProductDescriptionTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="New Era Mesh Trucker In Black"
-            app:layout_constraintBottom_toBottomOf="@+id/mainpage_productimage"
-            app:layout_constraintStart_toEndOf="@+id/mainpage_productimage"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <ImageView
             android:id="@+id/mainpage_productimage"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="left"
             android:adjustViewBounds="true"
@@ -47,6 +24,32 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/fek_460" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/mainpage_productprice"
+            style="@style/MainPageProductDescriptionTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/mainpage_productdescription"
+            android:layout_marginLeft="75dp"
+            android:layout_marginTop="100dp"
+            android:layout_toRightOf="@id/mainpage_productimage"
+            android:text="£30.00" />
+
+        <TextView
+            android:id="@+id/mainpage_productdescription"
+            style="@style/MainPageProductDescriptionTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/mainpage_productimage"
+            android:layout_toRightOf="@id/mainpage_productimage"
+            android:text="New Era Mesh Trucker In Black" />
+
+    </RelativeLayout>
 
 </LinearLayout>

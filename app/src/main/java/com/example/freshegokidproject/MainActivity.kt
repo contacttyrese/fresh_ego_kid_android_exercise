@@ -1,7 +1,5 @@
 package com.example.freshegokidproject
 
-import android.app.Activity
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
@@ -9,13 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.freshegokidproject.model.ProductsDao
+import com.example.freshegokidproject.model.ProductDao
 import com.example.freshegokidproject.presenter.ProductRecyclerViewAdapter
-import java.io.FileReader
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,10 +19,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val productRecyclerView = findViewById<RecyclerView>(R.id.mainpage_product_list)
-        val dao = ProductsDao("first.json", this)
+        val dao = ProductDao("first.json", this)
+        val products = dao.mProducts.values.toList()
 
+        productRecyclerView.setHasFixedSize(true)
+        productRecyclerView.setItemViewCacheSize(3)
+        productRecyclerView.isNestedScrollingEnabled = false
         productRecyclerView.layoutManager = LinearLayoutManager(this)
-        productRecyclerView.adapter = ProductRecyclerViewAdapter(this, dao.mProducts)
+        productRecyclerView.adapter = ProductRecyclerViewAdapter(this, products)
 
         // Used to start new activity
 //        val intent = Intent(this, MainPageProductListActivity::class.java)

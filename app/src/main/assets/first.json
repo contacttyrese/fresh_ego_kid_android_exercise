@@ -2,18 +2,27 @@
   "products": {
     "fek_460": {
       "description":"New Era Mesh Trucker In Black",
-      "price":"30.00",
-      "image":"/Users/ArtistSimple/AndroidStudioProjects/FreshEgoKidProject/app/src/main/res/drawable/fek_460.jpg"
+      "price":"30.00"
     },
     "fek_497": {
       "description":"New Era 9FORTY Polo Cap in grey",
-      "price":"30.00",
-      "image":"/Users/ArtistSimple/AndroidStudioProjects/FreshEgoKidProject/app/src/main/res/drawable/fek_492.jpg"
+      "price":"30.00"
     },
     "fek_500": {
       "description":"New Era Reflective Cap in Black",
-      "price":"40.00",
-      "image":"/Users/ArtistSimple/AndroidStudioProjects/FreshEgoKidProject/app/src/main/res/drawable/fek_500.jpg"
+      "price":"40.00"
+    },
+    "fek_10193": {
+      "description":"Big Heritage Logo Sweatshirt In Grey",
+      "price":"45.00"
+    },
+    "fek_10225": {
+      "description":"Reflective Funnel Neck Windbreaker In Black",
+      "price":"85.00"
+    },
+    "fek_10206": {
+      "description":"Heritage Logo Hoodie In Black",
+      "price":"50.00"
     }
   }
 }
