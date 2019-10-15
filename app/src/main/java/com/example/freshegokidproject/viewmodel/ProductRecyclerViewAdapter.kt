@@ -1,4 +1,4 @@
-package com.example.freshegokidproject.presenter
+package com.example.freshegokidproject.viewmodel
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ class ProductRecyclerViewAdapter(private val context: Context, private val produ
     var mInflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = mInflater.inflate(R.layout.mainpage_product_list, parent, false)
+        val view = mInflater.inflate(R.layout.recyclerview_product_list, parent, false)
         return ViewHolder(view)
     }
 

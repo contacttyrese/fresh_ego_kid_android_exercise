@@ -55,7 +55,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/discount_banner_image"
-                tools:listitem="@layout/mainpage_product_list" />
+                tools:listitem="@layout/recyclerview_product_list" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/home_button"
+        android:id="@+id/mainact_home_button"
         style="@style/NavigationBarButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

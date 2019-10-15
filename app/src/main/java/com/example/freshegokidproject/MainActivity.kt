@@ -1,17 +1,23 @@
 package com.example.freshegokidproject
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.model.ProductDao
-import com.example.freshegokidproject.presenter.ProductRecyclerViewAdapter
+import com.example.freshegokidproject.view.SearchActivity
+import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
+import io.reactivex.rxjava3.core.Observable
+import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,9 +26,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val productRecyclerView = findViewById<RecyclerView>(R.id.mainpage_product_list)
+        val searchButton = findViewById<Button>(R.id.search_button)
         val dao = ProductDao("first.json", this)
         val products = dao.mProducts.values.toList()
         val layoutManager = LinearLayoutManager(this)
+        val observable = Observable.fromIterable<Product>(products.asIterable())
+//        val observable = Observable.fromIterable(dao.mProducts.asIterable())
+
+//        observable.subscribe {
+//            it.value
+//        }
+
+//        observable.safeSubscribe(ProductObserver())
 
         productRecyclerView.setHasFixedSize(true)
         productRecyclerView.setItemViewCacheSize(3)
@@ -31,13 +46,38 @@ class MainActivity : AppCompatActivity() {
         productRecyclerView.adapter = ProductRecyclerViewAdapter(this, products)
         productRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
 
-        // Used to start new activity
-//        val intent = Intent(this, MainPageProductListActivity::class.java)
-//        startActivity(intent)
+        searchButton.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+//            intent.putExtra("products", arrayOf(products))
+            intent.putParcelableArrayListExtra("products", products as ArrayList<out Product>)
+            startActivity(intent)
+//            ArrayList<Product : Parcelable>()
+        }
+
+
+//        ObservableOnSubscribe<> {  }
+
+//        for (product in products) {
+//            val observable: Observable<Product> = ObservableCreate<Product>(ObservableOnSubscribe<Product> {
+//                    emitter -> emitter.onNext(product)
+//                emitter.onComplete()
+//            })
+//        }
+//        val observable: Observable<Product> = ObservableCreate<Product>(ObservableOnSubscribe<Product> {
+//            emitter -> emitter.onNext(products.get(0))
+//            emitter.onComplete()
+//        })
+
+
 
         // Was using to retrieve images from URL
 //        val discountBannerImage = findViewById<ImageView>(R.id.discount_banner_image)
 //        DownloadImageTask(discountBannerImage).execute("https://cdn.shopify.com/s/files/1/2579/8156/files/MID-SEASON_SALE_FRESH_EGO_KID_3024x.png?v=1570440980")
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
 
     }
 

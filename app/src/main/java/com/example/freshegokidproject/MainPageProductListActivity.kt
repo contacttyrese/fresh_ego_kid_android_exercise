@@ -4,7 +4,7 @@ package com.example.freshegokidproject
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
 //
-//        val productRecyclerView = findViewById<RecyclerView>(R.id.mainpage_product_list)
+//        val productRecyclerView = findViewById<RecyclerView>(R.id.recyclerview_product_list)
 //        val dao = ProductDao("first.json", this)
 //
 //        productRecyclerView.layoutManager = LinearLayoutManager(this)

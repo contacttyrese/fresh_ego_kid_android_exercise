@@ -16,8 +16,8 @@ class ProductDao(val file: String, val context: Context) {
             val productDescription = productJson.getString("description")
             val productPrice = productJson.getString("price")
             var isProductImageInResources =
-                this::class.java.getResource("/res/drawable/" + productKey + ".jpg") != null ||
-                this::class.java.getResource("/res/drawable/" + productKey + ".png") != null
+                this::class.java.getResource("/res/drawable/$productKey.jpg") != null ||
+                this::class.java.getResource("/res/drawable/$productKey.png") != null
             assert(isProductImageInResources) { "product image was not found" }
 
             val product = Product(productKey, productDescription, productPrice)

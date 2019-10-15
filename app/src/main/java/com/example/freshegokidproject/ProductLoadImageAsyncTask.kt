@@ -1,4 +1,4 @@
-package com.example.freshegokidproject.view
+package com.example.freshegokidproject
 
 import android.content.Context
 import android.graphics.Bitmap
