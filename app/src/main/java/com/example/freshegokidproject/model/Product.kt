@@ -3,7 +3,7 @@ package com.example.freshegokidproject.model
 import android.os.Parcel
 import android.os.Parcelable
 
-class Product(override val key: String, override val description: String, override val price: String) : Parcelable, ProductBase {
+data class Product(override val key: String, override val description: String, override val price: String) : ProductBase, Parcelable  {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),

@@ -9,12 +9,22 @@ class ProductDao(val file: String, val context: Context) {
 
     private fun getAllProducts(): Map<String, Product> {
         val mapOfProducts = ArrayMap<String, Product>()
-        val productsJson = JSONObject(context.assets.open(file).bufferedReader(Charsets.UTF_8).readText()).getJSONObject("products")
+        val reader = context.assets.open(file).bufferedReader(Charsets.UTF_8)
+        val jsonString = reader.use {
+            it.readText()
+        }
+//        val prodsJson = JsonObject().getAsJsonObject(jsonString).getAsJsonArray("products")
+        val productsJson = JSONObject(jsonString).getJSONObject("products")
         for (numberOfProducts in 0 until productsJson.length()) {
+//        for (numberOfProducts in 0 until prodsJson.size()) {
             val productKey = productsJson.names().get(numberOfProducts).toString()
+//            val productKey = prodsJson[numberOfProducts].asString
             val productJson = productsJson.getJSONObject(productKey)
+//            val productJson = prodsJson.asJsonObject[productKey].asJsonObject
             val productDescription = productJson.getString("description")
+//            val productDescription = productJson.get("description").asString
             val productPrice = productJson.getString("price")
+//            val productPrice = productJson.get("price").asString
             var isProductImageInResources =
                 this::class.java.getResource("/res/drawable/$productKey.jpg") != null ||
                 this::class.java.getResource("/res/drawable/$productKey.png") != null

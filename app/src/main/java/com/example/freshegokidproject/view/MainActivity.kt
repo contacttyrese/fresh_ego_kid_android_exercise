@@ -1,4 +1,4 @@
-package com.example.freshegokidproject
+package com.example.freshegokidproject.view
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -12,9 +12,9 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.freshegokidproject.R
 import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.model.ProductDao
-import com.example.freshegokidproject.view.SearchActivity
 import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
 import io.reactivex.rxjava3.core.Observable
 import java.util.ArrayList
@@ -48,10 +48,8 @@ class MainActivity : AppCompatActivity() {
 
         searchButton.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
-//            intent.putExtra("products", arrayOf(products))
             intent.putParcelableArrayListExtra("products", products as ArrayList<out Product>)
             startActivity(intent)
-//            ArrayList<Product : Parcelable>()
         }
 
 

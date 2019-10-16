@@ -8,7 +8,6 @@ import android.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.freshegokidproject.MainActivity
 import com.example.freshegokidproject.R
 import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
@@ -31,7 +30,6 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             startActivity(intent)
         }
         searchView.setOnQueryTextListener(this)
-//        searchView.setOnQueryTextListener(SearchView.)
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
@@ -45,7 +43,6 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 productsFound.add(product)
             }
         }
-        // check if text appears in name case insensitive
 
         val layoutManager = LinearLayoutManager(this)
         searchRecyclerView.setItemViewCacheSize(3)
