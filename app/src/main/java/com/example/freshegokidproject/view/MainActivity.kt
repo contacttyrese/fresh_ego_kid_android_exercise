@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.freshegokidproject.R
 import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.model.ProductDao
-import com.example.freshegokidproject.viewmodel.ProductRecyclerOnItemTouchListener
 import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
-import io.reactivex.rxjava3.core.Observable
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val productRecyclerView = findViewById<RecyclerView>(R.id.mainpage_product_list)
-        val searchButton = findViewById<Button>(R.id.search_button)
+        val searchButton = findViewById<Button>(R.id.mainact_search_button)
         val dao = ProductDao("first.json", this)
         val products = dao.mProducts.values.toList()
         val layoutManager = LinearLayoutManager(this)

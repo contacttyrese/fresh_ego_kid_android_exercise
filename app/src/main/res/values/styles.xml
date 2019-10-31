@@ -5,16 +5,19 @@
         <!-- Update if necessary -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:fontFamily">sans-serif-light, sans-serif-condensed-light, sans-serif-thin</item>
     </style>
 
     <!-- Customize new themes here. -->
-    <style name="NewTheme">
+    <style name="FekTheme">
         <item name="android:colorPrimary">@color/navigationBarColor</item>
     </style>
 
     <style name="NavigationBarButtonTheme" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">@color/navigationButtonsColor</item>
+    </style>
+
+    <style name="NavigationBarHeadingTheme" parent="TextAppearance.AppCompat.Headline">
         <item name="android:textColor">@color/navigationButtonsColor</item>
     </style>
 

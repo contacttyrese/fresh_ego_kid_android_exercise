@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_navigation_toolbar">
+        app:layout_constraintTop_toBottomOf="@+id/mainact_navigation_toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -61,7 +61,7 @@
     </ScrollView>
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/top_navigation_toolbar"
+        android:id="@+id/mainact_navigation_toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/navigationBarColor"
@@ -78,19 +78,30 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/navigation_home_button"
-        app:layout_constraintBottom_toBottomOf="@+id/top_navigation_toolbar"
-        app:layout_constraintStart_toStartOf="@+id/top_navigation_toolbar"
+        app:layout_constraintBottom_toBottomOf="@+id/mainact_navigation_toolbar"
+        app:layout_constraintStart_toStartOf="@+id/mainact_navigation_toolbar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/search_button"
+        android:id="@+id/mainact_search_button"
         style="@style/NavigationBarButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:text="@string/navigation_search_button"
-        app:layout_constraintBottom_toBottomOf="@+id/top_navigation_toolbar"
+        app:layout_constraintBottom_toBottomOf="@+id/mainact_navigation_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/top_navigation_toolbar" />
+        app:layout_constraintTop_toTopOf="@+id/mainact_navigation_toolbar" />
+
+    <TextView
+        android:id="@+id/mainact_navigation_header"
+        style="@style/NavigationBarHeadingTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toStartOf="@+id/mainact_search_button"
+        app:layout_constraintStart_toEndOf="@+id/mainact_home_button"
+        app:layout_constraintTop_toTopOf="@+id/mainact_navigation_toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
