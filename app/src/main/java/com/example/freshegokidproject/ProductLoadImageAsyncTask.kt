@@ -18,24 +18,5 @@ class ProductLoadImageAsyncTask(val imageView: ImageView) : AsyncTask<Drawable, 
         imageView.setImageDrawable(params.get(0))
     }
 
-//    override fun onPostExecute(result: Drawable?) {
-//        super.onPostExecute(result)
-//
-//        imageView.setImageDrawable(drawable)
-//    }
-
-//    private fun getImageDrawable(productKey: String): Drawable? {
-//        return when(productKey) {
-//            "fek_460" -> ContextCompat.getDrawable(context, R.drawable.fek_460)
-//            "fek_497" -> ContextCompat.getDrawable(context, R.drawable.fek_497)
-//            "fek_500" -> ContextCompat.getDrawable(context, R.drawable.fek_500)
-//            "fek_10193" -> ContextCompat.getDrawable(context, R.drawable.fek_10193)
-//            "fek_10206" -> ContextCompat.getDrawable(context, R.drawable.fek_10206)
-//            "fek_10225" -> ContextCompat.getDrawable(context, R.drawable.fek_10225)
-//
-//            else -> null
-//        }
-//    }
-
 }
 

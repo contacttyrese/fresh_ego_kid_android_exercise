@@ -2,6 +2,7 @@ package com.example.freshegokidproject.model
 
 interface ProductBase {
     val key: String
-    val description: String
+    val title: String
     val price: String
+    val description: String
 }

@@ -21,16 +21,17 @@ class ProductDao(val file: String, val context: Context) {
 //            val productKey = prodsJson[numberOfProducts].asString
             val productJson = productsJson.getJSONObject(productKey)
 //            val productJson = prodsJson.asJsonObject[productKey].asJsonObject
-            val productDescription = productJson.getString("description")
-//            val productDescription = productJson.get("description").asString
+            val productTitle = productJson.getString("title")
+//            val productDescription = productJson.get("title").asString
             val productPrice = productJson.getString("price")
 //            val productPrice = productJson.get("price").asString
+            val productDescription = productJson.getString("description")
             var isProductImageInResources =
                 this::class.java.getResource("/res/drawable/$productKey.jpg") != null ||
                 this::class.java.getResource("/res/drawable/$productKey.png") != null
             assert(isProductImageInResources) { "product image was not found" }
 
-            val product = Product(productKey, productDescription, productPrice)
+            val product = Product(productKey, productTitle, productPrice, productDescription)
             mapOfProducts.put(productKey, product)
         }
         return mapOfProducts

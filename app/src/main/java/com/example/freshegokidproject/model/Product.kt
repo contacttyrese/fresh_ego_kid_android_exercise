@@ -3,8 +3,10 @@ package com.example.freshegokidproject.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class Product(override val key: String, override val description: String, override val price: String) : ProductBase, Parcelable  {
+data class Product(override val key: String, override val title: String, override val price: String,
+                   override val description: String) : ProductBase, Parcelable  {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
@@ -13,8 +15,9 @@ data class Product(override val key: String, override val description: String, o
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(key)
-        parcel.writeString(description)
+        parcel.writeString(title)
         parcel.writeString(price)
+        parcel.writeString(description)
     }
 
     override fun describeContents(): Int {

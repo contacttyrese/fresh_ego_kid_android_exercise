@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.freshegokidproject.R
 import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.model.ProductDao
+import com.example.freshegokidproject.viewmodel.ProductRecyclerOnItemTouchListener
 import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
 import io.reactivex.rxjava3.core.Observable
 import java.util.ArrayList
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val dao = ProductDao("first.json", this)
         val products = dao.mProducts.values.toList()
         val layoutManager = LinearLayoutManager(this)
-        val observable = Observable.fromIterable<Product>(products.asIterable())
+//        val observable = Observable.fromIterable<Product>(products.asIterable())
 //        val observable = Observable.fromIterable(dao.mProducts.asIterable())
 
 //        observable.subscribe {
@@ -45,6 +46,13 @@ class MainActivity : AppCompatActivity() {
         productRecyclerView.layoutManager = layoutManager
         productRecyclerView.adapter = ProductRecyclerViewAdapter(this, products)
         productRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        productRecyclerView.findViewHolderForItemId(1)
+//        productRecyclerView.item
+//        productRecyclerView.addOnItemTouchListener(ProductRecyclerOnItemTouchListener())
+//        productRecyclerView.addOnItemTouchListener()
+//        RecyclerView.SimpleOnItemTouchListener() {
+//
+//        }
 
         searchButton.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)

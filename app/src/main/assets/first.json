@@ -1,28 +1,34 @@
 {
   "products": {
     "fek_460": {
-      "description":"New Era Mesh Trucker In Black",
-      "price":"30.00"
+      "title":"New Era Mesh Trucker In Black",
+      "price":"30.00",
+      "description":"The New Era Black A-Frame Trucker is a must have hat this season. The trucker hat features the iconic Fresh Ego Kid Heritage Logo on the front embroidered in black, and the New Era Flag and FEK Heart to the side and rear. The whole hat is finished off with a snap closure to the rear for perfect comfort for all day wear."
     },
     "fek_497": {
-      "description":"New Era 9FORTY Polo Cap in grey",
-      "price":"30.00"
+      "title":"New Era 9FORTY Polo Cap in grey",
+      "price":"30.00",
+      "description":"Stay fresh from head to toe starting with the New Era 9FORTY Polo hat in grey with teal logo. The classic design features a fully curved visor, a D-Ring adjustable strap to the rear for optimal comfort and the Fresh Ego Kid Heritage Logo embroidered on the front in black and red. The hat is finished off with the New Era Flag and FEK Heart embroidered on the side of the hat."
     },
     "fek_500": {
-      "description":"New Era Reflective Cap in Black",
-      "price":"40.00"
+      "title":"New Era Reflective Cap in Black",
+      "price":"40.00",
+      "description":"The New Era Black A-Frame Reflective Trucker is a must have hat this season. The trucker hat features the iconic Fresh Ego Kid Heritage Logo on the front embroidered in white, and the New Era Flag and FEK Heart to the side and rear. The whole hat is finished off with a snap closure to the rear for perfect comfort for all day wear."
     },
     "fek_10193": {
-      "description":"Big Heritage Logo Sweatshirt In Grey",
-      "price":"45.00"
+      "title":"Big Heritage Logo Sweatshirt In Grey",
+      "price":"45.00",
+      "description":"The season’s logo crew sweat! Stand out from the crowd with our Heritage logo crew sweat, in a striking grey marl, black and red color combo. Contrast colors give this piece some added flair. Whilst the raglan shape sleeves and premium fabric give comfort. Wear these with our logo jogger for a complete look."
     },
     "fek_10225": {
-      "description":"Reflective Funnel Neck Windbreaker In Black",
-      "price":"85.00"
+      "title":"Reflective Funnel Neck Windbreaker In Black",
+      "price":"85.00",
+      "description":"Stay dry and fresh with our stylish Windbreaker this season. Colour blocked with a silver reflective fabric, this piece is a notch above the rest in design and function. Featuring a hood with adjusters, zip front closure and front pockets. Adorned by our Heritage logo in reflective ink."
     },
     "fek_10206": {
-      "description":"Heritage Logo Hoodie In Black",
-      "price":"50.00"
+      "title":"Heritage Logo Hoodie In Black",
+      "price":"50.00",
+      "description":"Introducing our statement piece for the season. This fashion hoodie features a colour block cut and sew front, inlaid with our Fresh Ego Kid design. A striking combo of red and black is both modern yet classic. Stand out from the crowd and represent the brand! Featuring our signature premium sweat fabric, flat-lock stitch detailing and side entry pockets."
     }
   }
 }

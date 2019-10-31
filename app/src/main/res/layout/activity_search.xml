@@ -49,7 +49,7 @@
 
     <SearchView
         android:id="@+id/search_widget_test"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,9 +72,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Tap icon to search for product by description"
+        android:text="Search for product by Description"
         android:textAlignment="center"
-        android:textSize="31dp"
+        android:textSize="31sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_widget_test" />

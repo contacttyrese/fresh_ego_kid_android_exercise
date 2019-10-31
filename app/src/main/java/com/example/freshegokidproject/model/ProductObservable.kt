@@ -21,7 +21,7 @@ class ProductObservable : Observable<Product>() {
 
 //    fun something() {
 //        mKey = product.key
-//        mDescription = product.description
+//        mDescription = product.title
 //        mPrice = product.price
 //        setChanged()
 //        notifyObservers(product)

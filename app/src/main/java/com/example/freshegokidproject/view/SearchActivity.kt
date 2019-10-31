@@ -29,7 +29,9 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
         searchView.setOnQueryTextListener(this)
+        searchView.setIconifiedByDefault(false)
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
@@ -39,7 +41,7 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         var productsFound : ArrayList<Product> = ArrayList()
         for (product in products) {
-            if (product.description.contains(query.toString(), true)) {
+            if (product.title.contains(query.toString(), true)) {
                 productsFound.add(product)
             }
         }

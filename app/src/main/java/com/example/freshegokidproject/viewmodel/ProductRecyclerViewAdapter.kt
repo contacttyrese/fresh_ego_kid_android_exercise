@@ -24,6 +24,7 @@ class ProductRecyclerViewAdapter(private val context: Context, private val produ
         holder.configureProductView()
         val productPriceWithCurrency = context.resources.getString(R.string.product_price, product.price)
         holder.populateProductView(product, productPriceWithCurrency)
+        holder.itemView.setOnClickListener(ProductRecyclerOnItemTouchListener(context, product))
     }
 
     override fun getItemCount(): Int {
@@ -42,34 +43,12 @@ class ProductRecyclerViewAdapter(private val context: Context, private val produ
         }
 
         fun populateProductView(product: Product, priceWithCurrency: String) {
-            mDescriptionTextView.text = product.description
+            mDescriptionTextView.text = product.title
             mPriceTextView.text = priceWithCurrency
             val productEnum = ImageResourceEnum.valueOf(product.key.toUpperCase())
             Picasso.get().load(productEnum.getResourceId()).fit().into(mImageView)
+//            itemView.tag = product.key
         }
     }
 
-}
-
-private enum class ImageResourceEnum {
-    FEK_460 {
-        override fun getResourceId() = R.drawable.fek_460
-    },
-    FEK_497 {
-        override fun getResourceId() = R.drawable.fek_497
-    },
-    FEK_500 {
-        override fun getResourceId() = R.drawable.fek_500
-    },
-    FEK_10193 {
-        override fun getResourceId() = R.drawable.fek_10193
-    },
-    FEK_10206 {
-        override fun getResourceId() = R.drawable.fek_10206
-    },
-    FEK_10225 {
-        override fun getResourceId() = R.drawable.fek_10225
-    };
-
-    abstract fun getResourceId() : Int
 }
