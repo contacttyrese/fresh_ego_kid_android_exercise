@@ -41,7 +41,8 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         var productsFound : ArrayList<Product> = ArrayList()
         for (product in products) {
-            if (product.title.contains(query.toString(), true)) {
+            if (product.title.contains(query.toString(), true) ||
+                    product.description.contains(query.toString(), true)) {
                 productsFound.add(product)
             }
         }
