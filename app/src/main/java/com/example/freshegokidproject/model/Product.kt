@@ -6,10 +6,10 @@ import android.os.Parcelable
 data class Product(override val key: String, override val title: String, override val price: String,
                    override val description: String) : ProductBase, Parcelable  {
     constructor(parcel: Parcel) : this(
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString()
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!
     ) {
     }
 

@@ -1,10 +1,12 @@
 package com.example.freshegokidproject.view
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.freshegokidproject.R
 import com.example.freshegokidproject.model.Product
@@ -18,6 +20,7 @@ class ProductDetailActivity : AppCompatActivity() {
     lateinit var descriptionView: TextView
     var product: Product? = null
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
@@ -27,7 +30,7 @@ class ProductDetailActivity : AppCompatActivity() {
         titleView = findViewById<TextView>(R.id.detailact_title)
         descriptionView = findViewById<TextView>(R.id.detailact_description)
 
-        product = intent.extras.getParcelable("productToDisplay")!!
+        product = intent.extras?.getParcelable("productToDisplay", Product::class.java)!!
         assert(product != null) { "product is empty" }
 
         val productEnum = ImageResourceEnum.valueOf(product!!.key.toUpperCase())

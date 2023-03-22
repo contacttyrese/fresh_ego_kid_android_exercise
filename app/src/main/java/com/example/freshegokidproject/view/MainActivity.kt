@@ -100,7 +100,6 @@ private class DownloadImageTask(var bmImage: ImageView) : AsyncTask<String, Void
             mIcon = BitmapFactory.decodeStream(inputStream)
         }
         catch (exception: Exception) {
-            Log.e("Error", exception.message)
             exception.printStackTrace()
         }
         return mIcon
