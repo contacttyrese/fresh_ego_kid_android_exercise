@@ -6,25 +6,27 @@ import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freshegokidproject.R
+import com.example.freshegokidproject.databinding.ActivityMainBinding
 import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.model.ProductDao
 import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-        val productRecyclerView = findViewById<RecyclerView>(R.id.mainpage_product_list)
         val searchButton = findViewById<Button>(R.id.mainact_search_button)
         val dao = ProductDao("first.json", this)
         val products = dao.mProducts.values.toList()
@@ -38,13 +40,13 @@ class MainActivity : AppCompatActivity() {
 
 //        observable.safeSubscribe(ProductObserver())
 
-        productRecyclerView.setHasFixedSize(true)
-        productRecyclerView.setItemViewCacheSize(3)
-        productRecyclerView.isNestedScrollingEnabled = false
-        productRecyclerView.layoutManager = layoutManager
-        productRecyclerView.adapter = ProductRecyclerViewAdapter(this, products)
-        productRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
-        productRecyclerView.findViewHolderForItemId(1)
+        binding.mainpageProductList.setHasFixedSize(true)
+        binding.mainpageProductList.setItemViewCacheSize(3)
+        binding.mainpageProductList.isNestedScrollingEnabled = false
+        binding.mainpageProductList.layoutManager = layoutManager
+        binding.mainpageProductList.adapter = ProductRecyclerViewAdapter(this, products)
+        binding.mainpageProductList.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        binding.mainpageProductList.findViewHolderForItemId(1)
 //        productRecyclerView.item
 //        productRecyclerView.addOnItemTouchListener(ProductRecyclerOnItemTouchListener())
 //        productRecyclerView.addOnItemTouchListener()
