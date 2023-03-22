@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:id="@+id/searchact_scrollview"
+        android:id="@+id/searchScrollView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchact_heading">
+        app:layout_constraintTop_toBottomOf="@+id/searchHeading">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/search_recyclerview_list"
+                android:id="@+id/searchRecyclerView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +37,7 @@
     </ScrollView>
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/top_navigation_toolbar_search"
+        android:id="@+id/topNavigationToolbarSearch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/navigationBarColor"
@@ -48,34 +48,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
-        android:id="@+id/search_widget_test"
+        android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_navigation_toolbar_search" />
+        app:layout_constraintTop_toBottomOf="@+id/topNavigationToolbarSearch" />
 
     <Button
-        android:id="@+id/searchact_home_button"
+        android:id="@+id/searchHomeButton"
         style="@style/NavigationBarButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/navigation_home_button"
-        app:layout_constraintBottom_toBottomOf="@+id/top_navigation_toolbar_search"
+        app:layout_constraintBottom_toBottomOf="@+id/topNavigationToolbarSearch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/searchact_heading"
+        android:id="@+id/searchHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Search for product by Description"
+        android:text="@string/search_for_product_by_description"
         android:textAlignment="center"
         android:textSize="31sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_widget_test" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

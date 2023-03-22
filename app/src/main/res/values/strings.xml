@@ -3,4 +3,8 @@
     <string name="navigation_home_button">Home</string>
     <string name="navigation_search_button">Search</string>
     <string name="product_price">£%1$s</string>
+    <string name="home_discount_banner">discount banner</string>
+    <string name="product_detail_title">Product Title</string>
+    <string name="product_detail_description">Product Description</string>
+    <string name="search_for_product_by_description">Search for product by Description</string>
 </resources>

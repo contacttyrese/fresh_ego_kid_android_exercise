@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/top_navigation_toolbar_detail"
+        android:id="@+id/topNavigationToolbarDetail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/navigationBarColor"
@@ -19,18 +19,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/detailact_home_button"
+        android:id="@+id/productDetailHomeButton"
         style="@style/NavigationBarButtonTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/navigation_home_button"
-        app:layout_constraintBottom_toBottomOf="@+id/top_navigation_toolbar_detail"
+        app:layout_constraintBottom_toBottomOf="@+id/topNavigationToolbarDetail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/detailact_image"
+        android:id="@+id/productDetailImage"
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:layout_marginStart="8dp"
@@ -39,23 +39,23 @@
         android:adjustViewBounds="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_navigation_toolbar_detail"
+        app:layout_constraintTop_toBottomOf="@+id/topNavigationToolbarDetail"
         app:srcCompat="@drawable/fek_460" />
 
     <TextView
-        android:id="@+id/detailact_title"
+        android:id="@+id/productDetailTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:text="Product Title"
+        android:text="@string/product_detail_title"
         android:textAlignment="center"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailact_image" />
+        app:layout_constraintTop_toBottomOf="@+id/productDetailImage" />
 
     <TextView
         android:id="@+id/detailact_description"
@@ -63,11 +63,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Product Description"
+        android:text="@string/product_detail_description"
         android:textAlignment="center"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailact_title" />
+        app:layout_constraintTop_toBottomOf="@+id/productDetailTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

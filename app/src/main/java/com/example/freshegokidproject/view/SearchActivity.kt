@@ -27,15 +27,15 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         setContentView(view)
 
         products = intent.getParcelableArrayListExtra<Product>("products", Product::class.java)!!
-        searchRecyclerView = findViewById<RecyclerView>(R.id.search_recyclerview_list)
+        searchRecyclerView = findViewById<RecyclerView>(R.id.searchRecyclerView)
 
-        binding.searchactHomeButton.setOnClickListener {
+        binding.searchHomeButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
-        binding.searchWidgetTest.setOnQueryTextListener(this)
-        binding.searchWidgetTest.setIconifiedByDefault(false)
+        binding.searchView.setOnQueryTextListener(this)
+        binding.searchView.setIconifiedByDefault(false)
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {

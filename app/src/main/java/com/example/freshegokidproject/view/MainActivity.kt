@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.freshegokidproject.R
 import com.example.freshegokidproject.databinding.ActivityMainBinding
 import com.example.freshegokidproject.model.Product
@@ -27,54 +26,23 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        val searchButton = findViewById<Button>(R.id.mainact_search_button)
         val dao = ProductDao("first.json", this)
         val products = dao.mProducts.values.toList()
         val layoutManager = LinearLayoutManager(this)
-//        val observable = Observable.fromIterable<Product>(products.asIterable())
-//        val observable = Observable.fromIterable(dao.mProducts.asIterable())
 
-//        observable.subscribe {
-//            it.value
-//        }
+        binding.homeProductList.setHasFixedSize(true)
+        binding.homeProductList.setItemViewCacheSize(3)
+        binding.homeProductList.isNestedScrollingEnabled = false
+        binding.homeProductList.layoutManager = layoutManager
+        binding.homeProductList.adapter = ProductRecyclerViewAdapter(this, products)
+        binding.homeProductList.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        binding.homeProductList.findViewHolderForItemId(1)
 
-//        observable.safeSubscribe(ProductObserver())
-
-        binding.mainpageProductList.setHasFixedSize(true)
-        binding.mainpageProductList.setItemViewCacheSize(3)
-        binding.mainpageProductList.isNestedScrollingEnabled = false
-        binding.mainpageProductList.layoutManager = layoutManager
-        binding.mainpageProductList.adapter = ProductRecyclerViewAdapter(this, products)
-        binding.mainpageProductList.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
-        binding.mainpageProductList.findViewHolderForItemId(1)
-//        productRecyclerView.item
-//        productRecyclerView.addOnItemTouchListener(ProductRecyclerOnItemTouchListener())
-//        productRecyclerView.addOnItemTouchListener()
-//        RecyclerView.SimpleOnItemTouchListener() {
-//
-//        }
-
-        searchButton.setOnClickListener {
+        binding.searchButton.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
             intent.putParcelableArrayListExtra("products", products as ArrayList<out Product>)
             startActivity(intent)
         }
-
-
-//        ObservableOnSubscribe<> {  }
-
-//        for (product in products) {
-//            val observable: Observable<Product> = ObservableCreate<Product>(ObservableOnSubscribe<Product> {
-//                    emitter -> emitter.onNext(product)
-//                emitter.onComplete()
-//            })
-//        }
-//        val observable: Observable<Product> = ObservableCreate<Product>(ObservableOnSubscribe<Product> {
-//            emitter -> emitter.onNext(products.get(0))
-//            emitter.onComplete()
-//        })
-
-
 
         // Was using to retrieve images from URL
 //        val discountBannerImage = findViewById<ImageView>(R.id.discount_banner_image)
@@ -84,7 +52,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-
     }
 
 

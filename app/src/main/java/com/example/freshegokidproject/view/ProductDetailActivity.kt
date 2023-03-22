@@ -29,11 +29,11 @@ class ProductDetailActivity : AppCompatActivity() {
         assert(product != null) { "product is empty" }
 
         val productEnum = ImageResourceEnum.valueOf(product!!.key.toUpperCase())
-        Picasso.get().load(productEnum.getResourceId()).into(binding.detailactImage)
-        binding.detailactTitle.text = product!!.title
+        Picasso.get().load(productEnum.getResourceId()).into(binding.productDetailImage)
+        binding.productDetailTitle.text = product!!.title
         binding.detailactDescription.text = product!!.description
 
-        binding.detailactHomeButton.setOnClickListener {
+        binding.productDetailHomeButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
