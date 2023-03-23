@@ -4,18 +4,15 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.freshegokidproject.R
 import com.example.freshegokidproject.databinding.ActivityMainBinding
 import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.model.ProductDao
 import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
-import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

@@ -1,13 +1,8 @@
 package com.example.freshegokidproject
 
-import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.AsyncTask
 import android.widget.ImageView
-import androidx.core.content.ContextCompat
-import com.example.freshegokidproject.R
-import com.example.freshegokidproject.model.Product
 
 class ProductLoadImageAsyncTask(val imageView: ImageView) : AsyncTask<Drawable, Unit, Unit>() {
 
