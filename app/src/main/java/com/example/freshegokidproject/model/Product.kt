@@ -10,8 +10,8 @@ data class Product(override val key: String, override val title: String, overrid
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!
-    ) {
-    }
+    )
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(key)
