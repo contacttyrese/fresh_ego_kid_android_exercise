@@ -7,58 +7,52 @@
     android:background="#FFFFFF"
     tools:context=".view.MainActivity">
 
-    <ScrollView
-        android:id="@+id/homeScrollView"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/homeHeading"
+        style="@style/MainPageHeadingTheme"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/navigationToolbar">
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/navigationToolbar" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/discountBannerImage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/home_discount_banner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeHeading"
+        app:srcCompat="@drawable/discount_banner_image" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/homeScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/discountBannerImage">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeProductList"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:listitem="@layout/recyclerview_product_list" />
 
-            <ImageView
-                android:id="@+id/discountBannerImage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/home_discount_banner"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/discount_banner_image" />
-
-            <TextView
-                android:id="@+id/homeHeading"
-                style="@style/MainPageHeadingTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                app:layout_constraintBottom_toTopOf="@+id/discountBannerImage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/homeProductList"
-                android:layout_width="wrap_content"
-                android:layout_height="400dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/discountBannerImage"
-                tools:listitem="@layout/recyclerview_product_list" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/navigationToolbar"
@@ -99,9 +93,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/homeScrollView"
         app:layout_constraintEnd_toStartOf="@+id/searchButton"
         app:layout_constraintStart_toEndOf="@+id/homeButton"
-        app:layout_constraintTop_toTopOf="@+id/navigationToolbar" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.015" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,13 @@
 package com.example.freshegokidproject.model
 
-import android.content.Context
-import androidx.collection.ArrayMap
 import org.json.JSONObject
+import java.io.BufferedReader
 
-class ProductDao(val file: String, val context: Context) {
-    val mProducts: Map<String, Product> = getAllProducts()
+class ProductDao(private val reader: BufferedReader) {
+    val mProducts: ArrayList<Product> = readProductsFromJson()
 
-    private fun getAllProducts(): Map<String, Product> {
-        val mapOfProducts = ArrayMap<String, Product>()
-        val reader = context.assets.open(file).bufferedReader(Charsets.UTF_8)
+    private fun readProductsFromJson(): ArrayList<Product> {
+        val listOfProducts = ArrayList<Product>()
         val jsonString = reader.use {
             it.readText()
         }
@@ -26,13 +24,9 @@ class ProductDao(val file: String, val context: Context) {
             assert(isProductImageInResources) { "product image was not found" }
 
             val product = Product(productKey, productTitle, productPrice, productDescription)
-            mapOfProducts.put(productKey, product)
+            listOfProducts.add(product)
         }
-        return mapOfProducts
-    }
-
-    fun getProductByKey(productKey: String): Product {
-        return mProducts.getValue(productKey)
+        return listOfProducts
     }
 
 }

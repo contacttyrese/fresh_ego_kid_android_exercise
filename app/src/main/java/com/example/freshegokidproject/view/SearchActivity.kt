@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.SearchView
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,10 +14,11 @@ import com.example.freshegokidproject.R
 import com.example.freshegokidproject.databinding.ActivitySearchBinding
 import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
+import com.example.freshegokidproject.viewmodel.SearchActivityViewModel
 
 class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
-    lateinit var searchRecyclerView: RecyclerView
-    lateinit var products: List<Product>
+    private lateinit var viewModel: SearchActivityViewModel
+    private lateinit var products: ArrayList<Product>
     private lateinit var binding: ActivitySearchBinding
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -26,8 +28,10 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val view = binding.root
         setContentView(view)
 
-        products = intent.getParcelableArrayListExtra<Product>("products", Product::class.java)!!
-        searchRecyclerView = findViewById<RecyclerView>(R.id.searchRecyclerView)
+        viewModel = ViewModelProvider(this)[SearchActivityViewModel::class.java]
+
+        products = intent.getParcelableArrayListExtra("products", Product::class.java)!!
+//        intent.getParcelableArrayExtra("products", Product::class.java)
 
         binding.searchHomeButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -43,20 +47,13 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        var productsFound : ArrayList<Product> = ArrayList()
-        for (product in products) {
-            if (product.title.contains(query.toString(), true) ||
-                    product.description.contains(query.toString(), true)) {
-                productsFound.add(product)
-            }
-        }
-
+        var productsFound : ArrayList<Product> = viewModel.getProductsFoundByQuery(query!!, products)
         val layoutManager = LinearLayoutManager(this)
-        searchRecyclerView.setItemViewCacheSize(3)
-        searchRecyclerView.isNestedScrollingEnabled = true
-        searchRecyclerView.layoutManager = layoutManager
-        searchRecyclerView.adapter = ProductRecyclerViewAdapter(this, productsFound)
-        searchRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        binding.searchRecyclerView.setItemViewCacheSize(3)
+        binding.searchRecyclerView.isNestedScrollingEnabled = true
+        binding.searchRecyclerView.layoutManager = layoutManager
+        binding.searchRecyclerView.adapter = ProductRecyclerViewAdapter(this, productsFound)
+        binding.searchRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
         return false
     }
 }
