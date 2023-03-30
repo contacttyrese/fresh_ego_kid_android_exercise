@@ -3,7 +3,7 @@ package com.example.freshegokidproject.viewmodel
 import androidx.lifecycle.ViewModel
 import com.example.freshegokidproject.model.Product
 
-class SearchActivityViewModel : ViewModel() {
+class SearchViewModel : ViewModel() {
 
     fun getProductsFoundByQuery(query: String, products: ArrayList<Product>) : ArrayList<Product> {
         var productsFound : ArrayList<Product> = ArrayList()
