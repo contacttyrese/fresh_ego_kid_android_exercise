@@ -49,6 +49,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
+
+
+
+
         // Was using to retrieve images from URL
 //        val discountBannerImage = findViewById<ImageView>(R.id.discount_banner_image)
 //        DownloadImageTask(discountBannerImage).execute("https://cdn.shopify.com/s/files/1/2579/8156/files/MID-SEASON_SALE_FRESH_EGO_KID_3024x.png?v=1570440980")

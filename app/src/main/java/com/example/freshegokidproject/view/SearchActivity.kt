@@ -39,6 +39,9 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
         binding.searchView.setOnQueryTextListener(this)
         binding.searchView.isIconifiedByDefault = false
+
+        // TODO: Modify results to populate view recycler view
+        viewModel.searchForProductsWithQueryViaHtmlService("grey")
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
