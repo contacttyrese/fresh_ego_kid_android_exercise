@@ -1,29 +1,16 @@
 //package com.example.freshegokidproject.model
 //
-//import io.reactivex.rxjava3.core.Observable
-//import io.reactivex.rxjava3.core.Observer
+//import io.reactivex.ObservableEmitter
+//import io.reactivex.ObservableOnSubscribe
 //
-//class ProductObservable : Observable<Product>() {
+//class ProductObservable() : ObservableOnSubscribe<ProductListPage> {
+//    override fun subscribe(emitter: ObservableEmitter<ProductListPage>) {
+//        if (!emitter.isDisposed) {
 //
-//    override fun subscribeActual(observer: Observer<in Product>?) {
-//        subscribeActual(observer)
+//            emitter.onNext()
+//
+//        }
+//        TODO("Not yet implemented")
 //    }
 //
-//    var mKey: String = ""
-//    var mDescription: String = ""
-//    var mPrice: String = ""
-//
-//    val mProduct = Product("", "", "")
-//
-//    override fun registerObserver(observer: Product?) {
-//        super.registerObserver(observer)
-//    }
-//
-//    fun something() {
-//        mKey = product.key
-//        mDescription = product.title
-//        mPrice = product.price
-//        setChanged()
-//        notifyObservers(product)
-//    }
 //}

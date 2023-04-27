@@ -1,12 +1,14 @@
-package com.example.freshegokidproject.viewmodel
+package com.example.freshegokidproject.view
 
-import android.content.Context
 import android.content.Intent
 import android.view.View
+import com.example.freshegokidproject.BaseApplication
 import com.example.freshegokidproject.model.Product
-import com.example.freshegokidproject.view.ProductDetailActivity
+import javax.inject.Inject
 
-class ProductRecyclerOnItemTouchListener(val context: Context, val product: Product) : View.OnClickListener {
+class ProductRecyclerOnItemTouchListener @Inject constructor(
+    val context: BaseApplication,
+    val product: Product) : View.OnClickListener {
     override fun onClick(v: View?) {
         val intent = Intent(context, ProductDetailActivity::class.java)
         intent.putExtra("productToDisplay", product)

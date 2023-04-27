@@ -1,4 +1,4 @@
-package com.example.freshegokidproject.viewmodel
+package com.example.freshegokidproject.view
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -24,7 +24,7 @@ class ProductRecyclerViewAdapter(private val context: Context, private val produ
         holder.configureProductView()
         val productPriceWithCurrency = context.resources.getString(R.string.product_price, product.price)
         holder.populateProductView(product, productPriceWithCurrency)
-        holder.itemView.setOnClickListener(ProductRecyclerOnItemTouchListener(context, product))
+//        holder.itemView.setOnClickListener(ProductRecyclerOnItemTouchListener(context, product))
     }
 
     override fun getItemCount(): Int {

@@ -1,4 +1,4 @@
-package com.example.freshegokidproject.viewmodel
+package com.example.freshegokidproject.view
 
 import com.example.freshegokidproject.R
 

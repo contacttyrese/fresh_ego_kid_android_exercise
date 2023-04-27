@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.freshegokidproject.databinding.ActivityMainBinding
-import com.example.freshegokidproject.viewmodel.ProductRecyclerViewAdapter
 import com.example.freshegokidproject.viewmodel.ProductViewModel
 import com.example.freshegokidproject.viewmodel.ProductViewModelFactory
 import java.io.BufferedReader

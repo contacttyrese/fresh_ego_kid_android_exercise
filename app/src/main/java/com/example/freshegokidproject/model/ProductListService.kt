@@ -1,6 +1,6 @@
 package com.example.freshegokidproject.model
 
-import io.reactivex.Single
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
@@ -15,7 +15,8 @@ interface ProductListService {
         "Accept-Language: en-US,en;q=0.9"
     )
     @GET("/search?type=product")
-    fun getProductsByQuery(@Query("q") query: String): Single<ProductSearchResult>
+//    fun getProductsByKeyword(@Query("q") query: String): Observable<List<ProductSearchResult>>
+    fun getPageWithSearchResultsByQuery(@Query("q") query: String): Observable<ProductListPage>
 
     companion object {
         const val API_URL = "https://www.freshegokid.com/"
