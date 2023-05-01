@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.freshegokidproject.databinding.ActivitySearchBinding
 import com.example.freshegokidproject.model.Product
-import com.example.freshegokidproject.model.ProductSearchResult
+import com.example.freshegokidproject.model.SearchResult
 import com.example.freshegokidproject.viewmodel.SearchUserAction
 import com.example.freshegokidproject.viewmodel.SearchViewModel
 import com.example.freshegokidproject.viewmodel.SearchViewState
@@ -22,7 +22,7 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 //    private lateinit var viewModel: SearchViewModel
     private val viewModel: SearchViewModel by viewModels()
     private lateinit var _products: ArrayList<Product>
-    private val _searchResults = ArrayList<ProductSearchResult>()
+    private val _searchResults = ArrayList<SearchResult>()
     private lateinit var binding: ActivitySearchBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,14 +65,14 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         newText?.let { input ->
             viewModel.userActionSubject.onNext(SearchUserAction.UserTyping(input))
         } ?: kotlin.run {
-            Log.i("typing", "input is null")
+            Log.e("user_typing_error", "input is null")
         }
         return false
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        query?.let { query ->
-            viewModel.userActionSubject.onNext(SearchUserAction.QuerySubmittedSuccess(query))
+        query?.let { input ->
+            viewModel.userActionSubject.onNext(SearchUserAction.QuerySubmittedSuccess(input))
 //            viewModel.userAction.postValue(SearchUserAction.QuerySubmittedSuccess(query))
 //            productsFound = viewModel.getProductsFoundByQuery(query, products)
 //            val layoutManager = LinearLayoutManager(this)
@@ -84,7 +84,7 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 //            binding.searchRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
             return false
         } ?: kotlin.run {
-            println("query was null")
+            Log.e("user_submit_error","query was null")
             viewModel.userAction.postValue(SearchUserAction.QuerySubmittedError)
             return false
         }
@@ -104,7 +104,7 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 is SearchViewState.ProductLoaded -> {
                     ProgressBar.GONE
                     _searchResults.removeAll(_searchResults.toSet())
-                    _searchResults.addAll(state.searchResults.productSearchResults)
+                    _searchResults.addAll(state.page.searchResults)
                     binding.searchRecyclerView.adapter?.let {
                         it.notifyDataSetChanged()
                         Log.i("recycler_update_success", "sent notification of data change in recylcer")
@@ -136,7 +136,7 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private fun createRecycler() {
 //        binding.searchRecyclerView.adapter = null
-        binding.searchRecyclerView.adapter = ProductSearchResultViewAdapter(this, _searchResults)
+        binding.searchRecyclerView.adapter = SearchResultViewAdapter(_searchResults)
         val layoutManager = LinearLayoutManager(this)
         binding.searchRecyclerView.layoutManager = layoutManager
         binding.searchRecyclerView.isNestedScrollingEnabled = true

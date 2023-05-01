@@ -1,5 +1,6 @@
-package com.example.freshegokidproject.model
+package com.example.freshegokidproject.network
 
+import com.example.freshegokidproject.model.ProductListPage
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -17,9 +18,4 @@ interface ProductListService {
     @GET("/search?type=product")
 //    fun getProductsByKeyword(@Query("q") query: String): Observable<List<ProductSearchResult>>
     fun getPageWithSearchResultsByQuery(@Query("q") query: String): Observable<ProductListPage>
-
-    companion object {
-        const val API_URL = "https://www.freshegokid.com/"
-    }
-
 }

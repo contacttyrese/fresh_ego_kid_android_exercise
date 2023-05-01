@@ -39,7 +39,12 @@ class MainActivity : AppCompatActivity() {
         binding.homeProductList.isNestedScrollingEnabled = true
         binding.homeProductList.layoutManager = layoutManager
         binding.homeProductList.adapter = ProductRecyclerViewAdapter(this, products)
-        binding.homeProductList.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        binding.homeProductList.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                layoutManager.orientation
+            )
+        )
         binding.homeProductList.findViewHolderForItemId(1)
 
         binding.searchButton.setOnClickListener {
@@ -47,44 +52,6 @@ class MainActivity : AppCompatActivity() {
             intent.putParcelableArrayListExtra("products", products)
             startActivity(intent)
         }
-
-
-
-
-
-
-
-        // Was using to retrieve images from URL
-//        val discountBannerImage = findViewById<ImageView>(R.id.discount_banner_image)
-//        DownloadImageTask(discountBannerImage).execute("https://cdn.shopify.com/s/files/1/2579/8156/files/MID-SEASON_SALE_FRESH_EGO_KID_3024x.png?v=1570440980")
-
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-
-}
-
-// Use following function if loading image from URL
-private class DownloadImageTask(var bmImage: ImageView) : AsyncTask<String, Void, Bitmap>() {
-
-    override fun doInBackground(vararg urls: String): Bitmap {
-        val urldisplay = urls[0]
-        lateinit var mIcon: Bitmap
-
-        try {
-            val inputStream = java.net.URL(urldisplay).openStream()
-            mIcon = BitmapFactory.decodeStream(inputStream)
-        }
-        catch (exception: Exception) {
-            exception.printStackTrace()
-        }
-        return mIcon
-    }
-
-    override fun onPostExecute(result: Bitmap) {
-        bmImage.setImageBitmap(result)
-    }
 }

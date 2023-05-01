@@ -2,8 +2,10 @@ package com.example.freshegokidproject.di
 
 import android.content.Context
 import com.example.freshegokidproject.BaseApplication
-import com.example.freshegokidproject.model.ProductListRetroFit
-import com.example.freshegokidproject.model.ProductListService
+import com.example.freshegokidproject.network.ProductDetailsRetroFit
+import com.example.freshegokidproject.network.ProductDetailsService
+import com.example.freshegokidproject.network.ProductListRetroFit
+import com.example.freshegokidproject.network.ProductListService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,8 +25,13 @@ object AppModule {
     }
 
     @Provides
-    fun provideService(): ProductListService {
+    fun provideListService(): ProductListService {
         return ProductListRetroFit.createProductListService()
+    }
+
+    @Provides
+    fun provideDetailsService(): ProductDetailsService {
+        return ProductDetailsRetroFit.createProductDetailsService()
     }
 
     @Provides
