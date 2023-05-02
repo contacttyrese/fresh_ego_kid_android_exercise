@@ -17,6 +17,6 @@ interface ProductDetailsService {
     )
 
     @GET("{detailsUrl}")
-    fun getPageWithProductDetailsByPath(@Path("detailsUrl", encoded = true) path: String):
+    fun getProductDetailsPageWithProductDetailsByPath(@Path("detailsUrl", encoded = true) path: String):
             Observable<ProductDetailsPage>
 }

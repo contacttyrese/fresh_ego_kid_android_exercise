@@ -12,11 +12,17 @@ class ProductRepository @Inject constructor(
     private val homeService: HomeService
 ) {
     fun fetchSearchResultsByQuery(query: String): Observable<ProductListPage> {
-        return listService.getPageWithSearchResultsByQuery(query)
+        return when (query.isNotBlank()) {
+            true -> listService.getProductListPageWithSearchResultsByQuery(query)
+            false -> Observable.just(ProductListPage())
+        }
     }
 
     fun fetchDetailsByDetailsUrl(detailsUrl: String): Observable<ProductDetailsPage> {
-        return detailsService.getPageWithProductDetailsByPath(detailsUrl)
+        return when (detailsUrl.isNotBlank()) {
+            true -> detailsService.getProductDetailsPageWithProductDetailsByPath(detailsUrl)
+            false -> Observable.just(ProductDetailsPage())
+        }
     }
 
     fun fetchHomeBannerAndProducts(): Observable<HomePage> {
