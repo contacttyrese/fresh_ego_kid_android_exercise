@@ -1,25 +1,26 @@
 package com.example.freshegokidproject.view
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.os.AsyncTask
 import android.os.Bundle
-import android.widget.ImageView
+import android.util.Log
+import android.widget.ProgressBar
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.freshegokidproject.databinding.ActivityMainBinding
-import com.example.freshegokidproject.viewmodel.ProductViewModel
-import com.example.freshegokidproject.viewmodel.ProductViewModelFactory
-import java.io.BufferedReader
+import com.example.freshegokidproject.model.SearchResult
+import com.example.freshegokidproject.viewmodel.MainViewModel
+import com.example.freshegokidproject.viewmodel.MainViewState
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: ProductViewModel
-    private lateinit var reader: BufferedReader
-    private lateinit var viewModelFactory : ProductViewModelFactory
+    private val viewModel: MainViewModel by viewModels()
+    private var _bannerUrl = ""
+    private var _products = ArrayList<SearchResult>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,18 +28,48 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        reader = assets.open("first.json").bufferedReader(Charsets.UTF_8)
-        viewModelFactory = ProductViewModelFactory(reader)
-        viewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
+        createRecycler()
+        populateView()
+        createObservation()
 
-        val products = viewModel.getAllProducts()
+        binding.searchButton.setOnClickListener {
+            val intent = Intent(this, SearchActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun createObservation() {
+        viewModel.viewState.observe(this) { state ->
+            when (state) {
+                MainViewState.LoadingBannerAndProducts -> {
+                    ProgressBar.VISIBLE
+                    Log.i("main_loading", "loading banner and products")
+                }
+                is MainViewState.LoadingError -> TODO()
+                is MainViewState.LoadingSuccess -> {
+                    ProgressBar.GONE
+                    Log.i("main_loaded_success", "data loaded successfully")
+                    _bannerUrl = state.bannerUrl
+                    _products.removeAll(state.products.toSet())
+                    _products.addAll(state.products)
+                    binding.homeProductList.adapter?.notifyDataSetChanged()
+                    populateView()
+                }
+            }
+        }
+    }
+
+    private fun populateView() = with(binding) {
+        Glide.with(root).load(_bannerUrl).into(discountBannerImage)
+    }
+
+    private fun createRecycler() {
         val layoutManager = LinearLayoutManager(this)
-
         binding.homeProductList.setHasFixedSize(true)
         binding.homeProductList.setItemViewCacheSize(3)
         binding.homeProductList.isNestedScrollingEnabled = true
         binding.homeProductList.layoutManager = layoutManager
-        binding.homeProductList.adapter = ProductRecyclerViewAdapter(this, products)
+        binding.homeProductList.adapter = SearchResultViewAdapter(_products)
         binding.homeProductList.addItemDecoration(
             DividerItemDecoration(
                 this,
@@ -46,12 +77,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
         binding.homeProductList.findViewHolderForItemId(1)
-
-        binding.searchButton.setOnClickListener {
-            val intent = Intent(this, SearchActivity::class.java)
-            intent.putParcelableArrayListExtra("products", products)
-            startActivity(intent)
-        }
     }
 
 }

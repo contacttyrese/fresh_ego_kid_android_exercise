@@ -10,7 +10,6 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.freshegokidproject.databinding.ActivitySearchBinding
-import com.example.freshegokidproject.model.Product
 import com.example.freshegokidproject.model.SearchResult
 import com.example.freshegokidproject.viewmodel.SearchUserAction
 import com.example.freshegokidproject.viewmodel.SearchViewModel
@@ -19,9 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
-//    private lateinit var viewModel: SearchViewModel
     private val viewModel: SearchViewModel by viewModels()
-    private lateinit var _products: ArrayList<Product>
     private val _searchResults = ArrayList<SearchResult>()
     private lateinit var binding: ActivitySearchBinding
 
@@ -31,17 +28,8 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val view = binding.root
         setContentView(view)
 
-//        viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
         createRecycler()
         createObservation()
-
-//        binding.searchRecyclerView.adapter = null
-
-//        _products = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-//            intent.getParcelableArrayListExtra("products", Product::class.java) as ArrayList<Product>
-//        } else {
-//            intent.getParcelableArrayListExtra<Product>("products") as ArrayList<Product>
-//        }
 
         binding.searchHomeButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -50,9 +38,6 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
         binding.searchView.setOnQueryTextListener(this)
         binding.searchView.isIconifiedByDefault = false
-
-        // TODO: Modify results to populate view recycler view
-//        viewModel.searchForProductsWithQueryViaHtmlService("grey")
     }
 
     override fun onStart() {
@@ -73,15 +58,6 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         query?.let { input ->
             viewModel.userActionSubject.onNext(SearchUserAction.QuerySubmittedSuccess(input))
-//            viewModel.userAction.postValue(SearchUserAction.QuerySubmittedSuccess(query))
-//            productsFound = viewModel.getProductsFoundByQuery(query, products)
-//            val layoutManager = LinearLayoutManager(this)
-//            binding.searchRecyclerView.setItemViewCacheSize(3)
-//            binding.searchRecyclerView.isNestedScrollingEnabled = true
-//            binding.searchRecyclerView.layoutManager = layoutManager
-//            binding.searchRecyclerView.adapter = ProductRecyclerViewAdapter(this, productsFound)
-//            binding.searchRecyclerView.adapter = ProductSearchResultViewAdapter(this, productsFound)
-//            binding.searchRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
             return false
         } ?: kotlin.run {
             Log.e("user_submit_error","query was null")
@@ -115,34 +91,14 @@ class SearchActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 }
             }
         }
-
-//        viewModel.viewState.observe(this) { state ->
-//            when (state) {
-//                SearchViewState.Loading -> {
-//                    ProgressBar.VISIBLE
-//                    Log.i("activity_search", "products loading")
-//                }
-//                is SearchViewState.ProductLoadError -> {
-//                    ProgressBar.GONE
-//                    Log.e("activity_search_error", "products loading error: ${state.throwable}")
-//                }
-//                is SearchViewState.ProductLoaded -> {
-//                    ProgressBar.GONE
-//                    Log.i("activity_search_success", "products loaded successfully")
-//                }
-//            }
-//        }
     }
 
     private fun createRecycler() {
-//        binding.searchRecyclerView.adapter = null
         binding.searchRecyclerView.adapter = SearchResultViewAdapter(_searchResults)
         val layoutManager = LinearLayoutManager(this)
         binding.searchRecyclerView.layoutManager = layoutManager
         binding.searchRecyclerView.isNestedScrollingEnabled = true
         binding.searchRecyclerView.setItemViewCacheSize(3)
-//            binding.searchRecyclerView.adapter = ProductRecyclerViewAdapter(this, productsFound)
-//        binding.searchRecyclerView.adapter = ProductSearchResultViewAdapter(this, _products)
         binding.searchRecyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
     }
 

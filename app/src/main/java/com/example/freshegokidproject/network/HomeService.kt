@@ -1,5 +1,7 @@
 package com.example.freshegokidproject.network
 
+import com.example.freshegokidproject.model.HomePage
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
@@ -13,6 +15,6 @@ interface HomeService {
         "Accept-Language: en-US,en;q=0.9"
     )
 
-    @GET("")
-    fun getHomepage()
+    @GET("/")
+    fun getHomepage(): Observable<HomePage>
 }

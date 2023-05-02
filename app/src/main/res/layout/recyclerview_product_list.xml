@@ -21,8 +21,7 @@
             android:cropToPadding="true"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/fek_460" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/mainpage_productprice"

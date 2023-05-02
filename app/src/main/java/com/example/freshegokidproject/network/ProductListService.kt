@@ -16,6 +16,5 @@ interface ProductListService {
         "Accept-Language: en-US,en;q=0.9"
     )
     @GET("/search?type=product")
-//    fun getProductsByKeyword(@Query("q") query: String): Observable<List<ProductSearchResult>>
     fun getPageWithSearchResultsByQuery(@Query("q") query: String): Observable<ProductListPage>
 }

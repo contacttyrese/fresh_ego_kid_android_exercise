@@ -59,18 +59,15 @@ class ProductDetailActivity : AppCompatActivity() {
                     ProgressBar.GONE
                     state.page.details.title?.let { title ->
                         _title = title
-//                        binding.detailsTitle.text = _title
                     }
 
                     state.page.details.description?.let { description ->
                         _description = description
-//                        binding.detailsDescription.text = _description
                     }
 
                     state.page.details.images?.let { images ->
                         images[0].src?.let { imageUrl ->
                             _imageUrl = imageUrl
-//                            Glide.with(this).load(imageUrl).into(binding.detailsImage)
                         }
                     }
 
@@ -90,10 +87,10 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun populateView() = with(binding) {
-        Log.i("activity_create_view", "attempting to create view")
+        Log.i("populate_detail_view", "attempting to populate detail view")
         detailsTitle.text = _title
         detailsDescription.text = _description
-        Glide.with(this.root).load(_imageUrl).into(detailsImage)
+        Glide.with(root).load(_imageUrl).into(detailsImage)
     }
 
 }

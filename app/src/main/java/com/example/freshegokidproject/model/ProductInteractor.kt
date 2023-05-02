@@ -18,14 +18,7 @@ class ProductInteractor @Inject constructor(
                 when (page.searchResults.isNotEmpty()) {
                     true -> {
                         page.searchResults.forEach { searchResult ->
-                            searchResult.imageUrl?.let { imageUrl ->
-                                val refactoredUrl = imageUrl.replace("{width}", "360")
-                                Log.i("image_url_raw", "print image raw url: $imageUrl")
-                                searchResult.imageUrl = "https:$refactoredUrl"
-                                Log.i("image_url_refactored", "image refactored url: ${searchResult.imageUrl}")
-                            } ?: kotlin.run {
-                                Log.e("next_imageurl_error", "image url for search result is null")
-                            }
+                            refactorImageUrlsForPage(searchResult)
 
                             searchResult.detailsUrl?.let { detailsUrl ->
                                 searchResult.key = detailsUrl.split("products/","?", ignoreCase =  true, limit =  0)[1]
@@ -57,6 +50,35 @@ class ProductInteractor @Inject constructor(
 
             }
             .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    fun getPageObservableWithHomeBannerAndHomeProducts(): Observable<HomePage> {
+        return repository.fetchHomeBannerAndProducts()
+            .subscribeOn(Schedulers.io())
+            .doOnNext { page ->
+                page.products.forEach { searchResult ->
+                    refactorImageUrlsForPage(searchResult)
+                }
+
+                page.bannerUrl?.let { bannerUrl ->
+                    page.bannerUrl = "https:$bannerUrl"
+                    Log.i("banner_url_refactored", "image refactored url: ${page.bannerUrl}")
+                } ?: kotlin.run {
+                    Log.e("next_bannerurl_error", "banner url is null")
+                }
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+    }
+
+    private fun refactorImageUrlsForPage(searchResult: SearchResult) {
+        searchResult.imageUrl?.let { imageUrl ->
+            val refactoredUrl = imageUrl.replace("{width}", "360")
+            Log.i("image_url_raw", "print image raw url: $imageUrl")
+            searchResult.imageUrl = "https:$refactoredUrl"
+            Log.i("image_url_refactored", "image refactored url: ${searchResult.imageUrl}")
+        } ?: kotlin.run {
+            Log.e("next_imageurl_error", "image url for search result is null")
+        }
     }
 
 }
