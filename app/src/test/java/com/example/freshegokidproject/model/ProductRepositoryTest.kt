@@ -3,6 +3,7 @@ package com.example.freshegokidproject.model
 import com.example.freshegokidproject.network.HomeService
 import com.example.freshegokidproject.network.ProductDetailsService
 import com.example.freshegokidproject.network.ProductListService
+import com.example.freshegokidproject.rules.LogRule
 import io.mockk.every
 import io.mockk.mockk
 import io.reactivex.Observable
@@ -10,9 +11,13 @@ import io.reactivex.observers.TestObserver
 import org.junit.Assert.*
 
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 class ProductRepositoryTest {
+    @get:Rule
+    val logRule = LogRule()
+
     private val listService = mockk<ProductListService>()
     private val detailsService = mockk<ProductDetailsService>()
     private val homeService = mockk<HomeService>()
@@ -32,13 +37,48 @@ class ProductRepositoryTest {
     }
 
     @Test
-    fun `GIVEN query is valid THEN fetchSearchResultsByQuery should return mock observable`() {
+    fun `GIVEN query is one letter THEN fetchSearchResultsByQuery should return mock observable`() {
         val actual = repository.fetchSearchResultsByQuery("a")
 
         actual.subscribe(listPageObserver)
 
         listPageObserver.assertNoErrors()
         assertEquals("actual did not equal mock observable", listPageObservable, actual)
+    }
+
+    @Test
+    fun `GIVEN query is one word THEN fetchSearchResultsByQuery should return mock observable`() {
+        val actual = repository.fetchSearchResultsByQuery("hat")
+
+        actual.subscribe(listPageObserver)
+
+        listPageObserver.assertNoErrors()
+        assertEquals("actual did not equal mock observable", listPageObservable, actual)
+    }
+
+    @Test
+    fun `GIVEN query is more than one word THEN fetchSearchResultsByQuery should return mock observable`() {
+        val actual = repository.fetchSearchResultsByQuery("blue hat")
+
+        actual.subscribe(listPageObserver)
+
+        listPageObserver.assertNoErrors()
+        assertEquals("actual did not equal mock observable", listPageObservable, actual)
+    }
+
+    @Test
+    fun `GIVEN query is a number THEN fetchSearchResultsByQuery should return empty search results`() {
+        val actual = repository.fetchSearchResultsByQuery("404")
+
+        actual.subscribe(listPageObserver)
+
+        listPageObserver.assertComplete()
+        listPageObserver.assertNoErrors()
+        listPageObserver.assertSubscribed()
+        listPageObserver.assertValue { page ->
+            page.searchResults.isEmpty()
+        }
+        assertNotEquals("actual did equal mock observable", listPageObservable, actual)
     }
 
     @Test
