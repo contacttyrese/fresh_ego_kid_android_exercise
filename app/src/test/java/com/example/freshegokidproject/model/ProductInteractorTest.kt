@@ -37,7 +37,6 @@ class ProductInteractorTest {
     private val detailsPageObserver = TestObserver<ProductDetailsPage>()
     private val detailsPageObservable = Observable.just(ProductDetailsPage())
     private val homePageObserver = TestObserver<HomePage>()
-    private val homePageObservable = Observable.just(HomePage())
 
     @Before
     fun setUp() {
