@@ -1,54 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainpage_product_listitem_layout"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
-    <RelativeLayout
-        android:id="@+id/mainpage_product_listitem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/mainpage_productimage"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:adjustViewBounds="true"
             android:cropToPadding="true"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/sample_fek_search_result" />
 
         <TextView
             android:id="@+id/mainpage_productprice"
             style="@style/MainPageProductDescriptionTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@id/mainpage_productdescription"
-            android:layout_marginLeft="75dp"
+            android:textAlignment="center"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="100dp"
-            android:layout_toRightOf="@id/mainpage_productimage"
-            android:text="£30.00" />
+            android:layout_toEndOf="@id/mainpage_productimage"
+            android:text="@string/searchresult_list_item_price" />
 
         <TextView
             android:id="@+id/mainpage_productdescription"
             style="@style/MainPageProductDescriptionTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentRight="false"
-            android:layout_alignParentBottom="false"
+            android:textAlignment="center"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
             android:layout_toEndOf="@id/mainpage_productimage"
-            android:layout_toRightOf="@id/mainpage_productimage"
-            android:text="New Era Mesh Trucker In Black" />
+            android:text="@string/searchresult_list_item_title" />
 
-    </RelativeLayout>
-
-</LinearLayout>
+</RelativeLayout>

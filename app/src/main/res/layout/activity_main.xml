@@ -27,14 +27,13 @@
         android:contentDescription="@string/home_discount_banner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/homeHeading" />
+        app:layout_constraintTop_toBottomOf="@id/homeHeading"
+        android:src="@drawable/sample_fek_banner"/>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/homeScrollView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

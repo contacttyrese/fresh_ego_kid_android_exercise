@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         createRecycler()
-        populateView()
         createObservation()
 
         binding.searchButton.setOnClickListener {
@@ -45,7 +44,10 @@ class MainActivity : AppCompatActivity() {
                     ProgressBar.VISIBLE
                     Log.i("main_loading", "loading banner and products")
                 }
-                is MainViewState.LoadingError -> TODO()
+                is MainViewState.LoadingError -> {
+                    ProgressBar.GONE
+                    Log.e("main_loading_error", "failed to load banner and products")
+                }
                 is MainViewState.LoadingSuccess -> {
                     ProgressBar.GONE
                     Log.i("main_loaded_success", "data loaded successfully")
