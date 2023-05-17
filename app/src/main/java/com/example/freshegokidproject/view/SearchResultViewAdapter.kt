@@ -6,14 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.freshegokidproject.databinding.RecyclerviewProductListBinding
+import com.example.freshegokidproject.databinding.ItemviewSearchResultBinding
 import com.example.freshegokidproject.model.SearchResult
 import javax.inject.Inject
 
 class SearchResultViewAdapter @Inject constructor(private val searchResults: List<SearchResult>): RecyclerView.Adapter<SearchResultViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = RecyclerviewProductListBinding.inflate(
+        val binding = ItemviewSearchResultBinding.inflate(
             LayoutInflater.from(parent.context)
         )
         return ViewHolder(binding)
@@ -37,12 +37,12 @@ class SearchResultViewAdapter @Inject constructor(private val searchResults: Lis
         return searchResults.size
     }
 
-    class ViewHolder(private val binding: RecyclerviewProductListBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemviewSearchResultBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(searchResult: SearchResult) = with(binding) {
-            Glide.with(root).load(searchResult.imageUrl).into(mainpageProductimage)
-            mainpageProductprice.text = searchResult.price
-            mainpageProductdescription.text = searchResult.title
+            Glide.with(root).load(searchResult.imageUrl).into(itemviewProductimage)
+            itemviewProductprice.text = searchResult.price
+            itemviewProductdescription.text = searchResult.title
         }
     }
 }

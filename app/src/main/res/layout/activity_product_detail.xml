@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:gravity="center"
-            android:text="@string/navigation_home_button" />
+            android:text="@string/navigation_home_button"
+            android:textSize="12sp"/>
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
@@ -38,7 +39,7 @@
             <ImageView
                 android:id="@+id/detailsImage"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_300sdp"
                 android:layout_marginHorizontal="64dp"
                 android:adjustViewBounds="false"
                 android:src="@drawable/sample_fek_product_details_image"
@@ -54,7 +55,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:text="@string/product_detail_title"
                 android:textAlignment="center"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,7 +69,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:text="@string/product_detail_price"
                 android:textAlignment="center"
-                android:textSize="28sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

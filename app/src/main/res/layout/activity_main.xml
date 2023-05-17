@@ -7,6 +7,46 @@
     android:background="#FFFFFF"
     tools:context=".view.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/navigationToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/navigationBarColor"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/homeButton"
+            style="@style/NavigationBarButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="@string/navigation_home_button"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/navigationBarHeading"
+            style="@style/NavigationBarHeadingTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/app_name"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/searchButton"
+            style="@style/NavigationBarButtonTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/navigation_search_button"
+            android:textSize="12sp" />
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:id="@+id/homeHeading"
         style="@style/MainPageHeadingTheme"
@@ -15,19 +55,21 @@
         android:text="@string/home_promotion_heading"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@id/navigationToolbar" />
 
     <ImageView
         android:id="@+id/discountBannerImage"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/home_discount_banner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/homeHeading"
+        app:layout_constraintHeight_percent="0.30"
+        app:layout_constraintWidth_percent="1"
         android:src="@drawable/sample_fek_banner"/>
 
     <androidx.core.widget.NestedScrollView
@@ -42,61 +84,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/homeProductList"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginHorizontal="8dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/recyclerview_product_list" />
+            tools:listitem="@layout/itemview_search_result" />
 
     </androidx.core.widget.NestedScrollView>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/navigationToolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/navigationBarColor"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/homeButton"
-        style="@style/NavigationBarButtonTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/navigation_home_button"
-        app:layout_constraintBottom_toBottomOf="@+id/navigationToolbar"
-        app:layout_constraintStart_toStartOf="@+id/navigationToolbar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/searchButton"
-        style="@style/NavigationBarButtonTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="@string/navigation_search_button"
-        app:layout_constraintBottom_toBottomOf="@+id/navigationToolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/navigationToolbar" />
-
-    <TextView
-        android:id="@+id/navigationBarHeading"
-        style="@style/NavigationBarHeadingTheme"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        app:layout_constraintEnd_toStartOf="@+id/searchButton"
-        app:layout_constraintStart_toEndOf="@+id/homeButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.015" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
