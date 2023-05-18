@@ -4,8 +4,9 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.freshegokidproject.model.DetailsInteractor
 import com.example.freshegokidproject.model.ProductDetailsPage
-import com.example.freshegokidproject.model.ProductInteractor
+import com.example.freshegokidproject.model.HomeInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val interactor: ProductInteractor,
+    private val interactor: DetailsInteractor,
     private val disposables: CompositeDisposable
 ) : ViewModel() {
     private lateinit var _detailsUrl: String

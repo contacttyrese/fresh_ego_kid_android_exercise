@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val interactor: ProductInteractor,
+    private val interactor: ListInteractor,
     private val disposables: CompositeDisposable
     ) : ViewModel() {
     val userActionSubject = PublishSubject.create<SearchUserAction>()

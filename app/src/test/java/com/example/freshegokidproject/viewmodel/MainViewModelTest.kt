@@ -3,7 +3,7 @@ package com.example.freshegokidproject.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.freshegokidproject.model.HomePage
-import com.example.freshegokidproject.model.ProductInteractor
+import com.example.freshegokidproject.model.HomeInteractor
 import com.example.freshegokidproject.model.SearchResult
 import com.example.freshegokidproject.rules.LogRule
 import io.mockk.every
@@ -24,7 +24,7 @@ class MainViewModelTest {
     @get:Rule
     val executorRule = InstantTaskExecutorRule()
 
-    private val interactor = mockk<ProductInteractor>()
+    private val interactor = mockk<HomeInteractor>()
     private val mockObservable = mockk<Observable<HomePage>>()
     private val homePage = mockk<HomePage>()
     private val homeObservable = Observable.just(homePage)

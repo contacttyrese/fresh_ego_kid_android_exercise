@@ -1,5 +1,6 @@
 package com.example.freshegokidproject.model
 
+import com.example.freshegokidproject.helpers.InteractorHelper
 import com.example.freshegokidproject.rules.LogRule
 import com.example.freshegokidproject.rules.RxSchedulerRule
 import io.mockk.every
@@ -13,7 +14,7 @@ import org.junit.Rule
 
 import org.junit.Test
 
-class ProductInteractorTest {
+class ListInteractorTest {
     @get:Rule
     val rule = MockKRule(this)
     @get:Rule
@@ -22,30 +23,22 @@ class ProductInteractorTest {
     val logRule = LogRule()
 
     @MockK
-    private lateinit var repository: ProductRepository
+    private lateinit var repository: ListRepository
     @MockK
     private lateinit var mockListPageObservable: Observable<ProductListPage>
     @MockK
-    private lateinit var mockDetailsPageObservable: Observable<ProductDetailsPage>
-    @MockK
-    private lateinit var mockHomePageObservable: Observable<HomePage>
+    private lateinit var helper: InteractorHelper
 
-    private lateinit var interactor: ProductInteractor
+    private lateinit var interactor: ListInteractor
 
     private val listPageObserver = TestObserver<ProductListPage>()
     private val listPageObservable = Observable.just(ProductListPage())
-    private val detailsPageObserver = TestObserver<ProductDetailsPage>()
-    private val detailsPageObservable = Observable.just(ProductDetailsPage())
-    private val homePageObserver = TestObserver<HomePage>()
 
     @Before
     fun setUp() {
-        interactor = ProductInteractor(repository)
+        interactor = ListInteractor(repository, helper)
         setupListPageObservable()
-        setupDetailsPageObservable()
         setupQueriesForSearchResults()
-        setupUrlsForDetailsUrls()
-        setupHomePageObservable()
     }
 
     @Test
@@ -97,46 +90,6 @@ class ProductInteractorTest {
         assertNotEquals("did equal mock observable", mockListPageObservable, actual)
     }
 
-    @Test
-    fun `GIVEN detailsUrl is valid THEN getPageObservableWithDetailsByDetailsUrl returns mock observable`() {
-        val actual = interactor.getPageObservableWithDetailsByDetailsUrl("valid")
-        actual.subscribe(detailsPageObserver)
-
-        detailsPageObserver.assertNoErrors()
-        assertEquals("did not equal mock observable", mockDetailsPageObservable, actual)
-    }
-
-    @Test
-    fun `GIVEN detailsUrl is empty THEN getPageObservableWithDetailsByDetailsUrl returns empty observable`() {
-        val actual = interactor.getPageObservableWithDetailsByDetailsUrl("")
-        actual.subscribe(detailsPageObserver)
-
-        detailsPageObserver.assertNoErrors()
-        detailsPageObserver.assertSubscribed()
-        detailsPageObserver.assertEmpty()
-        assertNotEquals("did equal mock observable", mockDetailsPageObservable, actual)
-    }
-
-    @Test
-    fun `GIVEN detailsUrl is blank THEN getPageObservableWithDetailsByDetailsUrl returns empty observable`() {
-        val actual = interactor.getPageObservableWithDetailsByDetailsUrl(" ")
-        actual.subscribe(detailsPageObserver)
-
-        detailsPageObserver.assertNoErrors()
-        detailsPageObserver.assertSubscribed()
-        detailsPageObserver.assertEmpty()
-        assertNotEquals("did equal mock observable", mockDetailsPageObservable, actual)
-    }
-
-    @Test
-    fun `GIVEN getPageObservableWithHomeBannerAndHomeProducts THEN returns mock observable`() {
-        val actual = interactor.getPageObservableWithHomeBannerAndHomeProducts()
-        actual.subscribe(homePageObserver)
-
-        homePageObserver.assertNoErrors()
-        assertEquals("did not equal mock observable", mockHomePageObservable, actual)
-    }
-
     private fun setupListPageObservable() {
         every { mockListPageObservable.subscribeOn(any()) }.returns(mockListPageObservable)
         every { mockListPageObservable.doOnNext(any()) }.returns(mockListPageObservable)
@@ -150,26 +103,5 @@ class ProductInteractorTest {
         every { repository.fetchSearchResultsByQuery("valid query") }.returns(mockListPageObservable)
         every { repository.fetchSearchResultsByQuery("") }.returns(listPageObservable)
         every { repository.fetchSearchResultsByQuery(" ") }.returns(listPageObservable)
-    }
-
-    private fun setupDetailsPageObservable() {
-        every { mockDetailsPageObservable.subscribeOn(any()) }.returns(mockDetailsPageObservable)
-        every { mockDetailsPageObservable.doOnNext(any()) }.returns(mockDetailsPageObservable)
-        every { mockDetailsPageObservable.observeOn(any()) }.returns(mockDetailsPageObservable)
-        every { mockDetailsPageObservable.subscribe(detailsPageObserver) }.returns(Unit)
-    }
-
-    private fun setupUrlsForDetailsUrls() {
-        every { repository.fetchDetailsByDetailsUrl("valid") }.returns(mockDetailsPageObservable)
-        every { repository.fetchDetailsByDetailsUrl("")}.returns(detailsPageObservable)
-        every { repository.fetchDetailsByDetailsUrl(" ")}.returns(detailsPageObservable)
-    }
-
-    private fun setupHomePageObservable() {
-        every { mockHomePageObservable.subscribeOn(any()) }.returns(mockHomePageObservable)
-        every { mockHomePageObservable.doOnNext(any()) }.returns(mockHomePageObservable)
-        every { mockHomePageObservable.observeOn(any()) }.returns(mockHomePageObservable)
-        every { mockHomePageObservable.subscribe(homePageObserver) }.returns(Unit)
-        every { repository.fetchHomeBannerAndProducts() }.returns(mockHomePageObservable)
     }
 }

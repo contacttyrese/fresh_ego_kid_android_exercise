@@ -25,7 +25,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/searchresult_list_item_title"
-            android:layout_marginTop="@dimen/_32sdp"
+            android:textAlignment="viewStart"
+            android:maxLines="2"
+            android:layout_marginTop="@dimen/_16ssp"
+            app:layout_constraintWidth="wrap_content_constrained"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/itemview_productimage"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -33,10 +36,11 @@
         <TextView
             android:id="@+id/itemview_productprice"
             style="@style/MainPageProductDescriptionTheme"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_54sdp"
             android:text="@string/searchresult_list_item_price"
+            android:gravity="start"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/itemview_productimage"
             app:layout_constraintEnd_toEndOf="parent" />

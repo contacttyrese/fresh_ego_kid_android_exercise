@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.freshegokidproject.model.HomePage
-import com.example.freshegokidproject.model.ProductInteractor
+import com.example.freshegokidproject.model.HomeInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val interactor: ProductInteractor
+    private val interactor: HomeInteractor
 ) : ViewModel() {
     private val disposables = CompositeDisposable()
     private val _viewState = MutableLiveData<MainViewState>()

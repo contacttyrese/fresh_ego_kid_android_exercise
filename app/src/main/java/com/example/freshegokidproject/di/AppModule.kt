@@ -2,6 +2,8 @@ package com.example.freshegokidproject.di
 
 import android.content.Context
 import com.example.freshegokidproject.BaseApplication
+import com.example.freshegokidproject.helpers.InteractorHelper
+import com.example.freshegokidproject.helpers.RepositoryHelper
 import com.example.freshegokidproject.network.*
 import dagger.Module
 import dagger.Provides
@@ -39,5 +41,15 @@ object AppModule {
     @Provides
     fun provideDisposables(): CompositeDisposable {
         return CompositeDisposable()
+    }
+
+    @Provides
+    fun provideRepositoryHelper(): RepositoryHelper {
+        return RepositoryHelper()
+    }
+
+    @Provides
+    fun provideInteractorHelper(): InteractorHelper {
+        return InteractorHelper()
     }
 }
