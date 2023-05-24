@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.freshegokidproject.R
 import com.example.freshegokidproject.databinding.ActivityMainBinding
 import com.example.freshegokidproject.model.SearchResult
 import com.example.freshegokidproject.viewmodel.MainViewModel
@@ -31,8 +32,9 @@ class MainActivity : AppCompatActivity() {
         createRecycler()
         createObservation()
 
-        binding.searchButton.setOnClickListener {
+        binding.homeTopNavigationSearchButton.setOnClickListener {
             val intent = Intent(this, SearchActivity::class.java)
+            R.id.NO_DEBUG
             startActivity(intent)
         }
     }
@@ -54,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     _bannerUrl = state.bannerUrl
                     _products.removeAll(state.products.toSet())
                     _products.addAll(state.products)
-                    binding.homeProductList.adapter?.notifyDataSetChanged()
+                    binding.homeRecyclerView.adapter?.notifyDataSetChanged()
                     populateView()
                 }
             }
@@ -62,23 +64,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun populateView() = with(binding) {
-        Glide.with(root).load(_bannerUrl).into(discountBannerImage)
+        Glide.with(root).load(_bannerUrl).into(homeDiscountBanner)
     }
 
     private fun createRecycler() {
         val layoutManager = LinearLayoutManager(this)
-        binding.homeProductList.setHasFixedSize(true)
-        binding.homeProductList.setItemViewCacheSize(3)
-        binding.homeProductList.isNestedScrollingEnabled = true
-        binding.homeProductList.layoutManager = layoutManager
-        binding.homeProductList.adapter = SearchResultViewAdapter(_products)
-        binding.homeProductList.addItemDecoration(
+        binding.homeRecyclerView.setHasFixedSize(true)
+        binding.homeRecyclerView.setItemViewCacheSize(3)
+        binding.homeRecyclerView.isNestedScrollingEnabled = true
+        binding.homeRecyclerView.layoutManager = layoutManager
+        binding.homeRecyclerView.adapter = SearchResultViewAdapter(_products)
+        binding.homeRecyclerView.addItemDecoration(
             DividerItemDecoration(
                 this,
                 layoutManager.orientation
             )
         )
-        binding.homeProductList.findViewHolderForItemId(1)
+        binding.homeRecyclerView.findViewHolderForItemId(1)
     }
 
 }
