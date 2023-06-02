@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.freshegokidproject.R
 import com.example.freshegokidproject.databinding.ActivityMainBinding
+import com.example.freshegokidproject.helpers.UiTestHelper
 import com.example.freshegokidproject.model.SearchResult
 import com.example.freshegokidproject.viewmodel.MainViewModel
 import com.example.freshegokidproject.viewmodel.MainViewState
@@ -68,6 +69,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createRecycler() {
+        if (UiTestHelper().isRunningTest()) {
+            val testTitle = "this is a test title"
+            val testPrice = "£9.99"
+            val testImageUrl = "https://cdn.shopify.com/s/files/1/2579/8156/products/81freshegokidpeachbuckethat_360x.jpg"
+            val testDetailsUrl = "https://www.freshegokid.com/products/new-era-bel-air-bucket-hat-peach"
+            _products.add(SearchResult(title = testTitle, price = testPrice, imageUrl = testImageUrl, detailsUrl = testDetailsUrl))
+        }
         val layoutManager = LinearLayoutManager(this)
         binding.homeRecyclerView.setHasFixedSize(true)
         binding.homeRecyclerView.setItemViewCacheSize(3)
@@ -80,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 layoutManager.orientation
             )
         )
-        binding.homeRecyclerView.findViewHolderForItemId(1)
+        binding.homeRecyclerView.findViewHolderForItemId(0)
     }
 
 }

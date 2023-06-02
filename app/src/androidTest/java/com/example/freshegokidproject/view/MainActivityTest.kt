@@ -1,12 +1,13 @@
 package com.example.freshegokidproject.view
 
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.ext.junit.rules.activityScenarioRule
 import com.example.freshegokidproject.R
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.*
@@ -32,7 +33,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun allViewsAreDisplayed() {
+    fun navigationBarAndBannerAreDisplayed() {
         onView(withId(R.id.homeTopNavigationToolbar))
             .check(matches(isDisplayed()))
 
@@ -64,6 +65,47 @@ class MainActivityTest {
             .perform(click())
 
         onView(withId(R.id.searchScrollView))
+            .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun tabItemIsDisplayedOnRecyclerView() {
+        var recyclerView: RecyclerView? = null
+        var itemCount: Int = 0
+        scenarioRule.scenario.onActivity { activity ->
+            recyclerView = activity.findViewById<RecyclerView>(R.id.homeRecyclerView)
+        }
+        recyclerView?.let { recycler ->
+            recycler.adapter?.let { adapter ->
+                itemCount = adapter.itemCount
+            }
+        }
+
+        if (itemCount > 0) {
+            onView(withId(R.id.itemview_productprice))
+                .check(matches(isDisplayed()))
+        }
+    }
+
+    @Test
+    fun tabItemNavigatesToDetails() {
+        var recyclerView: RecyclerView? = null
+        var itemCount: Int = 0
+        scenarioRule.scenario.onActivity { activity ->
+            recyclerView = activity.findViewById<RecyclerView>(R.id.homeRecyclerView)
+        }
+        recyclerView?.let { recycler ->
+            recycler.adapter?.let { adapter ->
+                itemCount = adapter.itemCount
+            }
+        }
+
+        if (itemCount > 0) {
+            onView(withId(R.id.itemview_productprice))
+                .perform(click())
+        }
+
+        onView(withId(R.id.topNavigationToolbarDetail))
             .check(matches(isDisplayed()))
     }
 }
